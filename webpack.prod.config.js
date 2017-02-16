@@ -1,12 +1,12 @@
+const webpack = require('webpack');
 const path = require('path');
 
 // do html
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// where to tell place ./app/index.html to ./dist/index.html?????????//
-// because output?????/
+// This will send index.html to ./dist/index.html
 var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
-  template: __dirname + '/app/index.html', // here is teh source.
+  template: __dirname + '/app/index.html',
   filename: 'index.html',
   inject: 'body'
 })
@@ -29,6 +29,7 @@ module.exports = {
   output: {
     filename: "app.js",
     path: __dirname + "/dist",
+    publicPath: "/",
   },
   
   /*
@@ -45,12 +46,22 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ["babel-loader"]
+        loaders: ["react-hot-loader", "babel-loader"]
       }
       
     ]
   },
   
-  plugins: [HTMLWebpackPluginConfig]
+  plugins: [
+    HTMLWebpackPluginConfig,
   
+    // https://facebook.github.io/react/docs/optimizing-performance.html#use-the-production-build
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin()
+  ]
+
 };
