@@ -15,6 +15,8 @@ let HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
 
 // sometime, remove node_modules can resolve lots of issues.
 module.exports = {
+  devtool: 'source-map',
+
   // context, app
   context: __dirname + "/app",
 
