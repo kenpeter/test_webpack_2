@@ -1,10 +1,13 @@
-const path = require('path');
+let path = require('path');
+
+// https://github.com/jantimon/favicons-webpack-plugin
+let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 // do html
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // This will send index.html to ./dist/index.html
-var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+let HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/app/index.html',
   filename: 'index.html',
   inject: 'body'
@@ -50,6 +53,9 @@ module.exports = {
     ]
   },
   
-  plugins: [HTMLWebpackPluginConfig]
+  plugins: [
+    HTMLWebpackPluginConfig,
+    new FaviconsWebpackPlugin(__dirname + '/logo.png')
+  ]
   
 };
