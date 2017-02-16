@@ -28,6 +28,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "webpack-dev-server -d --hot --inline --history-api-fallback",
+    "dev_test": "NODE_ENV=development webpack -d --config ./webpack.config.js",
     "build": "NODE_ENV=production webpack -p --config ./webpack.prod.config.js"
   },
   "devDependencies": {
