@@ -1,11 +1,13 @@
-const webpack = require('webpack');
-const path = require('path');
+let path = require('path');
+
+// https://github.com/jantimon/favicons-webpack-plugin
+let FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 // do html
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+let HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // This will send index.html to ./dist/index.html
-var HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
+let HTMLWebpackPluginConfig = new HtmlWebpackPlugin({
   template: __dirname + '/app/index.html',
   filename: 'index.html',
   inject: 'body'
@@ -29,7 +31,6 @@ module.exports = {
   output: {
     filename: "app.js",
     path: __dirname + "/dist",
-    publicPath: "/",
   },
   
   /*
@@ -54,14 +55,7 @@ module.exports = {
   
   plugins: [
     HTMLWebpackPluginConfig,
-  
-    // https://facebook.github.io/react/docs/optimizing-performance.html#use-the-production-build
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin()
+    new FaviconsWebpackPlugin(__dirname + '/logo.png')
   ]
-
+  
 };
