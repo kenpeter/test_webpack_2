@@ -49,9 +49,31 @@ module.exports = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ["react-hot-loader", "babel-loader"]
-      }
+        loaders: ["babel-loader"]
+      },
       
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: "style-loader"
+          }, 
+          
+          {
+            loader: "css-loader",
+            options: {
+              sourceMap: true
+            }
+          }, 
+          
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: true
+            }
+          }
+        ]
+      }
     ]
   },
   

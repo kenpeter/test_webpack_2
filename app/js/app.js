@@ -16,6 +16,8 @@ import App from './views/App';
 import Home from './views/Home';
 import About from './views/About';
 
+import '../scss/app.scss';
+
 // react dom render
 // router, history, browser history
 // route path, component app, parent
